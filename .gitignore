@@ -1,4 +1,40 @@
+# SSH private keys
 *.pem
 *.key
+id_rsa
+id_ed25519
+
+# Ansible Vault passwords
+.vault_pass
+.vault_password
+vault-password.txt
+.vault_pass.txt
+
+# Environment variables and secrets
 .env
+.env.*
+secrets.yml
+credentials.yml
+
+# Ansible temporary files
 *.retry
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Temporary and backup files
+*.tmp
+*.bak
+*~

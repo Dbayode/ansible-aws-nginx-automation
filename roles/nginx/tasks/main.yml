@@ -1,0 +1,42 @@
+---
+- name: Update installed packages
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+    update_cache: true
+
+- name: Install Nginx
+  ansible.builtin.dnf:
+    name: "{{ nginx_package }}"
+    state: present
+
+- name: Deploy Nginx configuration
+  ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/conf.d/ansible-site.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Reload Nginx
+
+- name: Deploy website
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: "{{ nginx_document_root }}/index.html"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Start and enable Nginx
+  ansible.builtin.service:
+    name: "{{ nginx_service }}"
+    state: started
+    enabled: true
+
+- name: Apply pending configuration changes
+  ansible.builtin.meta: flush_handlers
+
+- name: Verify website
+  ansible.builtin.uri:
+    url: "http://127.0.0.1:{{ nginx_port }}/"
+    status_code: 200

@@ -1,0 +1,4 @@
+---
+nginx_page_title: "AWS EC2 Ansible Automation"
+nginx_page_message: "Successfully deployed using Ansible Roles"
+nginx_port: 80

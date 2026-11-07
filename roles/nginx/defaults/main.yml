@@ -1,0 +1,7 @@
+---
+nginx_package: nginx
+nginx_service: nginx
+nginx_document_root: /usr/share/nginx/html
+nginx_port: 80
+nginx_page_title: "DevOps Automation Successful"
+nginx_page_message: "Deployed using Ansible Roles"
